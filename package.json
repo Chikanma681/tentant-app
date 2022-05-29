@@ -1,0 +1,19 @@
+{
+  "name": "tentant-app",
+  "version": "1.0.0",
+  "description": "Tentant Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  , "start":"node server.js",
+  "scipt":"nodemon server.js"
+},
+  "author": "Chikanma Onuegbu",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "concurrently": "^7.2.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4"
+  }
+}
