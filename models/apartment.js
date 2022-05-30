@@ -11,7 +11,7 @@ const apartmentSchema = new Schema({
     required: true,
   },
   bedrooms: {
-    type: String,
+    type: Number,
     required: true,
   },
   rentPrice: {
