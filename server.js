@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
 const Filestore = require("session-file-store")(session);
-// const MongoDBSession = require("connect-mongodb-session")(session); // alternative store
+const MongoDBSession = require("connect-mongodb-session")(session); // alternative store
 // we use bodyparser in the routes folder
 
 app.use(morgan("dev"));
@@ -26,10 +26,10 @@ connect
   )
   .catch((err) => console.log(err));
 
-// const store = new MongoDBSession({
-//   uri: db,
-//   collection: 'mySessions',
-// });
+const store = new MongoDBSession({
+  uri: db,
+  collection: "mySessions",
+});
 
 app.use(
   session({
@@ -37,13 +37,21 @@ app.use(
     secret: "12345-678910",
     saveUninitialized: false,
     resave: false,
-    store: new Filestore(),
+    store: store,
   })
 );
-app.use("/", apartmentsRouter);
-app.use("/users", userRouter);
 
-const auth = (req, res, next) => {};
+const isAuth = (req, res, next) => {
+  if (req.session.isAuth) {
+    next();
+  } else {
+    console.log("Login required");
+    res.redirect("/login");
+  }
+};
+app.use("/users", userRouter);
+app.use(isAuth);
+app.use("/", apartmentsRouter);
 
 const port = process.env.PORT || 3000;
 
