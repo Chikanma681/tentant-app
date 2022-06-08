@@ -12,6 +12,7 @@ apartRouter
   .get((req, res, next) => {
     apartments
       .find({})
+      .populate("landlord")
       .then(
         (apartments) => {
           res.statusCode = 200;
@@ -23,6 +24,8 @@ apartRouter
       .catch((err) => console.log(err));
   })
   .post((req, res, next) => {
+    // console.log(req)
+    req.body.landlord = req.session.userId
     apartments
       .create(req.body)
       .then((apartment) => {
@@ -57,6 +60,7 @@ apartRouter
   .get((req, res, next) => {
     apartments
       .findById(req.params.apartmentId)
+      .populate("landlord")
       .then(
         (apartment) => {
           console.log("Apartment created", apartment);

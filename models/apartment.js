@@ -18,7 +18,11 @@ const apartmentSchema = new Schema({
     type: String,
     required: true,
   },
-  // might make amenities a subSchemai
+  landlord: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  // might make amenities a subSchema
 });
 
 const Apartments = mongoose.model("Apartment", apartmentSchema);

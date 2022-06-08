@@ -59,21 +59,12 @@ router.post("/login", (req, res, next) => {
       err.status = 404;
       return next(err);
     }
-    // } else if (user.password !== password) {
-    //   var err = new Error("Your password is incorrect!");
-    //   err.status = 403;
-    //   return next(err);
-    // } else if (user.username === username && user.password === password) {
-    //   req.session.user = "authenticated";
-    //   res.statusCode = 200;
-    //   res.setHeader("Content-Type", "text/plain");
-    //   res.end("You are authenticated!");
-    // }
-    // })
-    // .catch((err) => next(err));
+
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
         req.session.isAuth = true;
+        req.session.userId = user._id
+        // console.log(req.session.userId)
         res.json({ status: "Login Successful", user: user.username });
       } else {
         var err = new Error("Your password is incorrect!");
@@ -94,6 +85,20 @@ router.post("/logout", (req, res, next) => {
     err.status = 403;
     next(err);
   }
+});
+
+router.delete("/", (req, res, next) => {
+  User.deleteMany({})
+    .then(
+      (user) => {
+        console.log("user deleted", user);
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.json(user);
+      },
+      (err) => next(err)
+    )
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

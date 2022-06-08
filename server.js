@@ -50,7 +50,8 @@ const isAuth = (req, res, next) => {
   }
 };
 app.use("/users", userRouter);
-app.use(isAuth);
+app.use(isAuth); /*new idea: everyone can view the apartments 
+but you have to sign in to upload*/
 app.use("/", apartmentsRouter);
 
 const port = process.env.PORT || 3000;
