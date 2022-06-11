@@ -54,7 +54,7 @@ app.use(isAuth); /*new idea: everyone can view the apartments
 but you have to sign in to upload*/
 app.use("/", apartmentsRouter);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () =>
   console.log(`Server listening on http://www.localhost:${port}`)
