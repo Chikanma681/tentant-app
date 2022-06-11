@@ -27,3 +27,10 @@ const apartmentSchema = new Schema({
 
 const Apartments = mongoose.model("Apartment", apartmentSchema);
 module.exports = Apartments;
+
+/* the next thing to do is this:
+  - try and make everyone able to see but only post if signed in
+  - start with react and jump straight to redux
+  - link backend and frontend together
+  - deploy on heroku and github pages
+*/
