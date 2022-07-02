@@ -1,12 +1,18 @@
-import "./App.css";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
+import { Navbar } from "reactstrap";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <Login />
+      <Navbar color="success">
+        <div style={{ color: "white" }} >
+          <h5>RentScape</h5>
+        </div>
+      </Navbar>
+      <div className="App mt-3">
+        <Signup />
       </div>
     </Provider>
   );

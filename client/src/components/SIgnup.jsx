@@ -1,33 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, FormGroup, Navbar, Input, Label, Button } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { signup } from "../redux/actions/session";
 
 const Signup = () => {
+  const errors = useSelector((state) => state.error);
+  const session = useSelector((state) => state.session);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      username: e.target[0].value,
+      email: e.target[1].value,
+      password: e.target[2].value,
+    };
+    dispatch(signup(user)).then(()=>{
+      console.log('Signup Successful')
+    });
+  };
+
   return (
     <div>
-      <Navbar color="success">
-        <div style={{ color: "white" }}>
-          <h5>RentArc</h5>
+      <div className="col-12">
+        <div className="mx-auto">
+          <h6>Signup</h6>
         </div>
-      </Navbar>
-      <div>
-        <Form>
-          <FormGroup>
-            <Label type="text">Username</Label>
-            <Input type="email" />
-          </FormGroup>
-          <FormGroup>
-            <Label type="text">Email Address</Label>
-            <Input type="email" />
-          </FormGroup>
-          <FormGroup>
-            <Label type="text">Password</Label>
-            <Input type="email" />
-          </FormGroup>
-          <Button type="submit">Sign Up</Button>
-        </Form>
-      </div>
-      <div>
-        <p>Signup</p>
+        <h6>
+          <Form className="col-8 mx-auto" onSubmit={handleSubmit}>
+            <FormGroup>
+              <Label type="text">Username</Label>
+              <Input type="text" placeholder="Username" required />
+            </FormGroup>
+            <FormGroup>
+              <Label type="text">Email Address</Label>
+              <Input type="email" placeholder="Email Address" required />
+            </FormGroup>
+            <FormGroup>
+              <Label type="text">Password</Label>
+              <Input type="password" placeholder="Password" required />
+            </FormGroup>
+            <Input type="submit" value="Submit" />
+          </Form>
+        </h6>
       </div>
     </div>
   );
