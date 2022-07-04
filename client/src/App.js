@@ -1,19 +1,31 @@
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import HomePage from "./components/Homepage"
-import { Navbar } from "reactstrap";
+import HomePage from "./components/Homepage";
+import Header from "./components/Header";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+
 function App() {
   return (
     <Provider store={store}>
-      <Navbar color="success">
-        <div style={{ color: "white" }} >
-          <h5>RentScape</h5>
-        </div>
-      </Navbar>
+      <Header/>
       <div className="App mt-3">
-        <HomePage />
+        <Router>
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+          {/* <Redirect to="/login" /> */}
+        </Router>
       </div>
     </Provider>
   );
