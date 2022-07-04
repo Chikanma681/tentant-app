@@ -14,7 +14,9 @@ const Login = () => {
       email: e.target[0].value,
       password: e.target[1].value,
     };
-    dispatch(user)
+    dispatch(login(user))
+      .then(() => console.log("Login successful"))
+      .catch((err) => console.log(err));
   };
 
   return (

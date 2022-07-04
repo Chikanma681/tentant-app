@@ -15,9 +15,11 @@ const Signup = () => {
       email: e.target[1].value,
       password: e.target[2].value,
     };
-    dispatch(signup(user)).then(()=>{
-      console.log('Signup Successful')
-    });
+    dispatch(signup(user))
+      .then(() => {
+        console.log("Signup Successful");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

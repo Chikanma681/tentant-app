@@ -6,7 +6,7 @@ const userRouter = require("./routes/userRoutes");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-
+const cors = require("cors");
 const Filestore = require("session-file-store")(session);
 const MongoDBSession = require("connect-mongodb-session")(session); // alternative store
 // we use bodyparser in the routes folder
@@ -15,6 +15,7 @@ app.use(morgan("dev"));
 const db = require("./config/keys").mongoURI;
 app.use(cookieParser());
 //Connect to MongoDB
+app.use(cors());
 const connect = mongoose.connect(db);
 
 connect
@@ -45,8 +46,9 @@ const isAuth = (req, res, next) => {
   if (req.session.isAuth) {
     next();
   } else {
+    res.redirect("/users/login");
     console.log("Login required");
-    res.redirect("/login");
+
   }
 };
 app.use("/users", userRouter);

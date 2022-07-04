@@ -1,5 +1,6 @@
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import HomePage from "./components/Homepage"
 import { Navbar } from "reactstrap";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -12,7 +13,7 @@ function App() {
         </div>
       </Navbar>
       <div className="App mt-3">
-        <Signup />
+        <HomePage />
       </div>
     </Provider>
   );
