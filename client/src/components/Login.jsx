@@ -3,13 +3,13 @@ import { Form, FormGroup, Navbar, Input, Label, Button } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/actions/session";
 import { useHistory } from "react-router-dom";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const errors = useSelector((state) => state.error);
   const session = useSelector((state) => state.session);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -21,8 +21,7 @@ const Login = () => {
     dispatch(login(user))
       .then(() => {
         console.log("Login successful");
-        // navigate("/")
-
+        return navigate("/");
       })
       .catch((err) => console.log(err));
 

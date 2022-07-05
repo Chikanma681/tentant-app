@@ -14,9 +14,12 @@ const logoutCurrentUser = () => ({
 
 export const login = (user) => async (dispatch) => {
   const response = await apiUtil.login(user);
-  const data = await response.json();
+  console.log(response);
 
-  if (response.ok) {
+  const data = await response.data;
+  console.log(response);
+
+  if (response.status===200) {
     return dispatch(receiveCurrentUser(data));
   }
   return dispatch(receiveErrors(data));

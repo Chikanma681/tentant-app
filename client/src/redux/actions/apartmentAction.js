@@ -9,7 +9,7 @@ export const getItem = async (dispatch) => {
   console.log(response);
   console.log(response.data);
 
-  if (response.ok) {
+  if (response.status===200) {
     return dispatch({
       type: GET_ITEM,
       payload: response.data,

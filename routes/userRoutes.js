@@ -63,8 +63,8 @@ router.post("/login", (req, res, next) => {
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
         req.session.isAuth = true;
-        req.session.userId = user._id
-        // console.log(req.session.userId)
+        req.session.userId = user._id;
+        console.log("Bcrpt",req.sessionID);
         res.json({ status: "Login Successful", user: user.username });
       } else {
         var err = new Error("Your password is incorrect!");
