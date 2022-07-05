@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { Form, FormGroup, Navbar, Input, Label, Button } from "reactstrap";
-import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/actions/session";
 import { useHistory } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 const Login = () => {
   const errors = useSelector((state) => state.error);
   const session = useSelector((state) => state.session);
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,10 +22,11 @@ const Login = () => {
       .then(() => {
         console.log("Login successful");
         // navigate("/")
+
       })
       .catch((err) => console.log(err));
 
-      history.push("/")
+    // history.push("/")
   };
 
   return (
@@ -44,7 +45,7 @@ const Login = () => {
               <Label type="text">Password</Label>
               <Input type="password" placeholder="Password" required />
             </FormGroup>
-            <Input type="submit" value="Submit"/>
+            <Input type="submit" value="Submit" />
           </Form>
         </h6>
       </div>

@@ -3,6 +3,7 @@ import { Form, FormGroup, Navbar, Input, Label, Button } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { signup } from "../redux/actions/session";
 
+
 const Signup = () => {
   const errors = useSelector((state) => state.error);
   const session = useSelector((state) => state.session);
@@ -18,6 +19,7 @@ const Signup = () => {
     dispatch(signup(user))
       .then(() => {
         console.log("Signup Successful");
+
       })
       .catch((err) => console.log(err));
   };
