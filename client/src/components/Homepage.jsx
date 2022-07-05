@@ -20,7 +20,6 @@ import {
   Label,
 } from "reactstrap";
 
-
 const RenderCard = ({ item }) => {
   return (
     <Card>
@@ -38,7 +37,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getItem();
+    getItem(dispatch);
   }, []);
 
   return (
