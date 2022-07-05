@@ -16,38 +16,62 @@ import {
   CardSubtitle,
   Form,
   FormGroup,
+  Col,
   Input,
   Label,
 } from "reactstrap";
 
-const RenderCard = ({ item }) => {
-  return (
-    <Card>
-      <CardImg src={item.image} alt={item.name} />
-      <CardBody>
-        <CardTitle>{item.name}</CardTitle>
-        <CardText>{item.description}</CardText>
-      </CardBody>
-    </Card>
-  );
-};
+// const RenderCard = ({ item }) => {
+//   return (
+//     <Card>
+//       <CardImg src={item.image} alt={item.name} />
+//       <CardBody>
+//         <CardTitle>{item.name}</CardTitle>
+//         <CardText>{item.description}</CardText>
+//       </CardBody>
+//     </Card>
+//   );
+// };
 
 const HomePage = () => {
   const apartments = useSelector((state) => state.apartments.apartments);
   const dispatch = useDispatch();
-
+  console.log(apartments);
   useEffect(() => {
     getItem(dispatch);
   }, []);
 
   return (
-    <div className="col-8 mx-auto">
-      <div>
+    <div>
+      <div className="col-9 mx-auto">
         <Form>
           <FormGroup>
             <Input placeholder="Search by Address" />
           </FormGroup>
         </Form>
+      </div>
+      <div className="col-12 mx-auto my-auto">
+        {apartments.map((apartment) => {
+          return (
+            <div key={apartment._id}>
+              <Col md={3}>
+                <Card outline>
+                  <CardImg
+                    top
+                    width="100%"
+                    src={apartment.image}
+                    alt={apartment.address}
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">{apartment.address}</CardTitle>
+                    <CardSubtitle tag="h6"> {apartment.rentPrice}</CardSubtitle>
+                    <CardText>{apartment.bedrooms}</CardText>
+                  </CardBody>
+                </Card>
+              </Col>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
