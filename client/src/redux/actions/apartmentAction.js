@@ -6,8 +6,6 @@ axios.defaults.baseURL = "http://localhost:5000/";
 
 export const getItem = async (dispatch) => {
   const response = await axios.get("/");
-  console.log(response);
-  console.log(response.data);
 
   if (response.status===200) {
     return dispatch({

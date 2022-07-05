@@ -10,12 +10,11 @@ export const apartmentReducer = (state = initialState, { type, payload }) => {
     case GET_ITEM:
       return {
         ...state,
-        payload,
+        apartments: payload,
       };
     case ADD_ITEM:
       return {
-        ...state,
-        apartments: [payload, ...state.apartments],
+        apartments: [...state.apartments, payload],
       };
     case DELETE_ITEM:
       return {
