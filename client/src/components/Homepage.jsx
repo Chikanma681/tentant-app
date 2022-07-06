@@ -50,10 +50,10 @@ const HomePage = () => {
           </FormGroup>
         </Form>
       </div>
-      <div className="col-12 mx-auto my-auto">
+      <div className="col-9 mx-auto my-auto ">
         {apartments.map((apartment) => {
           return (
-            <div key={apartment._id}>
+            <div key={apartment._id} className="mb-3">
               <Col md={3}>
                 <Card outline>
                   <CardImg
