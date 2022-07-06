@@ -17,6 +17,8 @@ import {
   Form,
   FormGroup,
   Col,
+  Row,
+  Container,
   Input,
   Label,
 } from "reactstrap";
@@ -51,6 +53,8 @@ const HomePage = () => {
         </Form>
       </div>
       <div className="col-9 mx-auto my-auto ">
+      <Container>
+        <Row>
         {apartments.map((apartment) => {
           return (
             <div key={apartment._id} className="mb-3">
@@ -72,6 +76,8 @@ const HomePage = () => {
             </div>
           );
         })}
+        </Row>
+      </Container>
       </div>
     </div>
   );

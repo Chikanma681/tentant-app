@@ -24,11 +24,10 @@ const Header = () => {
 
   return (
     <Navbar color="success" dark expand="sm">
-      <NavbarBrand href="/">
-        <h6>RentScape</h6>
-      </NavbarBrand>
-      <Container>
-        <NavbarToggler onClick={handleToggle} />
+        <NavbarBrand href="/">
+          <h6>RentScape</h6>
+        </NavbarBrand>
+        <NavbarToggler onClick={handleToggle}  />
         <Collapse isOpen={toggle} navbar>
           <Nav navbar className="ms-auto mb-lg-0">
             <NavItem>
@@ -48,7 +47,6 @@ const Header = () => {
             )}
           </Nav>
         </Collapse>
-      </Container>
     </Navbar>
   );
 };
