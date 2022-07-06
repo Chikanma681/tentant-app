@@ -11,14 +11,13 @@ function App() {
   return (
     <Provider store={store}>
       <Header />
-      <div className="App mt-3">
+      <div className="App mt-3 ">
         <Routes>
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<HomePage />} />
-            <Route exact path="/signup" element={<Signup />} />
           </Route>
-
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
